@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "hw-mlops"
+version = "0.1.0"
+description = "MLOps homework"
+authors = ["Nikolai Kochetkov <professor3222@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "hw_mlops"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
