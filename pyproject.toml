@@ -10,11 +10,13 @@ packages = [{include = "hw_mlops"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 pandas = "^2.1.4"
+urllib3 = "1.26.15"
 
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.6.0"
 dvc = "^3.37.0"
+dvc-gdrive = "^3.0.0"
 
 [tool.black]
 line-length = 90
