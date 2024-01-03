@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 from dvc.api import DVCFileSystem
 from hydra.utils import get_original_cwd
+from sklearn.metrics import r2_score
 from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
 
@@ -16,6 +17,7 @@ class ModelTrainer:
         self.train_data_path = train_data_path
         self.original_dir = get_original_cwd()
         self.model_save_path = self.original_dir + model_save_path
+        self.score_ = 0
 
     def get_train_data(self) -> pd.DataFrame and pd.Series:
         target = "MedHouseVal"
@@ -34,6 +36,8 @@ class ModelTrainer:
     def train_model(self, X: pd.DataFrame, y: pd.Series) -> None:
         self.model = MLPRegressor(self.random_state, solver=self.optimizer)
         self.model.fit(X, y)
+        y_pred = self.model.predict(X)
+        self.score_ = r2_score(y_true=y, y_pred=y_pred)
 
     def save_model(self) -> None:
         model_dict = {"model": self.model, "scaler": self.scaler}

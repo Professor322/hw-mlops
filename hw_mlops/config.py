@@ -12,6 +12,7 @@ class Path:
 @dataclass
 class Params:
     optimizer: str
+    tracking_uri_mlflow: str
 
 
 @dataclass

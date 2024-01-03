@@ -6,3 +6,4 @@ path:
 
 params:
   optimizer: "adam"
+  tracking_uri_mlflow: "http://127.0.0.1:8080"

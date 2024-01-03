@@ -161,3 +161,4 @@ cython_debug/
 prediction_results.csv
 outputs
 mlruns
+mlartifacts
