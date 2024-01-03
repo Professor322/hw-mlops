@@ -31,4 +31,6 @@ class InferenceRunner:
         return self.y_pred
 
     def save_predictions(self):
-        pd.Series(self.y_pred).to_csv("prediction_results.csv")
+        prediction_results_path = "prediction_results.csv"
+        pd.Series(self.y_pred).to_csv(prediction_results_path)
+        print(f"predictions are saved in {prediction_results_path}")

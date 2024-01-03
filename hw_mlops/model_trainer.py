@@ -33,5 +33,7 @@ class ModelTrainer:
 
     def save_model(self) -> None:
         model_dict = {"model": self.model, "scaler": self.scaler}
-        with open("model/model.pkl", "wb") as file:
+        save_model_path = "model/model.pkl"
+        with open(save_model_path, "wb") as file:
             pickle.dump(model_dict, file)
+            print(f"model saved at {save_model_path}")
