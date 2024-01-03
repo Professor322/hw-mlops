@@ -1,0 +1,8 @@
+path:
+  training_path: "/data/train.csv"
+  test_path: "/data/test.csv"
+  model_save_path: "/model/model.pkl"
+  predictions_save_path: "/prediction_results/results.csv"
+
+params:
+  optimizer: "adam"
