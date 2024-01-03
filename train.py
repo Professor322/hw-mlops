@@ -1,3 +1,4 @@
+import git
 import hydra
 import mlflow
 from hydra.core.config_store import ConfigStore
@@ -26,6 +27,8 @@ def main(cfg: config.MyConfig) -> None:
     with mlflow.start_run():
         # Log the hyperparameters
         mlflow.log_params(cfg)
+        repo = git.Repo()
+        mlflow.log_param("commit-id", repo.head.object.hexsha)
 
         # Set a tag that we can use to remind ourselves what this run was for
         mlflow.set_tag("Training Info", "Basic MLP model for california housing")
@@ -33,8 +36,10 @@ def main(cfg: config.MyConfig) -> None:
         X, y = model_trainer.get_train_data()
         X_scaled = model_trainer.scale_features(X)
         model_trainer.train_model(X_scaled, y)
-        # Log the loss metric
         mlflow.log_metric("r2_score_train", model_trainer.score_)
+        # Log the loss metric
+        for loss in model_trainer.model.loss_curve_:
+            mlflow.log_metric("loss", loss)
         model_trainer.save_model()
 
 

@@ -23,8 +23,8 @@ class InferenceRunner:
         fs = DVCFileSystem(self.original_dir)
         local_copy = self.original_dir + self.test_data_path
         fs.get(self.test_data_path, local_copy)
-        df_train = pd.read_csv(local_copy)
-        return df_train.drop(columns=[target]), df_train[target]
+        df_test = pd.read_csv(local_copy)
+        return df_test.drop(columns=[target]), df_test[target]
 
     def scale_features(self, X: pd.DataFrame) -> pd.DataFrame:
         self.scaler.fit(X)

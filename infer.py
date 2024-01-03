@@ -1,3 +1,4 @@
+import git
 import hydra
 import mlflow
 from sklearn.metrics import r2_score
@@ -22,6 +23,8 @@ def main(cfg: config.MyConfig):
     with mlflow.start_run():
         # Log the hyperparameters
         mlflow.log_params(cfg)
+        repo = git.Repo()
+        mlflow.log_param("commit-id", repo.head.object.hexsha)
 
         # Set a tag that we can use to remind ourselves what this run was for
         mlflow.set_tag("Inference Info", "Basic MLP model for california housing")
